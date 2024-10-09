@@ -1,6 +1,12 @@
 import { useDroppable } from "@dnd-kit/core";
-import { Status, statusEnum } from "../../models/task.model";
+import { FormTask, Status, statusEnum, Task } from "../../models/task.model";
 import classes from "./tasks-column.module.scss";
+import { Button, message } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { taskService } from "../../services/task.service";
+import { Form } from "../Form";
+import { useTasksColumn } from "./useTasksColumn";
 
 export interface TasksColumnProps {
   type: (typeof statusEnum)[number];
@@ -9,26 +15,25 @@ export interface TasksColumnProps {
 }
 
 export const TasksColumn = ({ children, id, type }: TasksColumnProps) => {
-  const { setNodeRef } = useDroppable({
-    id,
-  });
+  const { form, setNodeRef, showModal } = useTasksColumn(id);
 
   return (
-    <div style={{ margin: "16px", flex: 1 }}>
-      <h2>{type}</h2>
-      <ul
-        ref={setNodeRef}
-        style={{
-          listStyle: "none",
-          padding: 0,
-          minHeight: "200px",
-          border: "1px solid #ccc",
-          borderRadius: "4px",
-          // padding: "16px",
+    <div className={classes.container}>
+      <header>
+        <h2>{type}</h2>
+        <Button icon={<PlusOutlined />} onClick={showModal} />
+      </header>
+      <ul ref={setNodeRef}>{children}</ul>
+      <Form
+        defaultValues={{
+          status: type,
+          description: "",
+          id: "",
+          title: "",
         }}
-      >
-        {children}
-      </ul>
+        variant="create"
+        {...form}
+      />
     </div>
   );
 };

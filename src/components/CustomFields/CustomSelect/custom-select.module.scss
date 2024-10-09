@@ -1,0 +1,17 @@
+.container {
+  & > main {
+    // border-bottom: 0.01rem solid black;
+
+    // & > select {
+    //   font-size: 1.2rem;
+    //   line-height: 2rem;
+    //   padding-inline: 0.3rem;
+    // }
+  }
+
+  & > footer {
+    color: #ff4d4f;
+    font-size: 0.9rem;
+    margin-left: 0.4rem;
+  }
+}

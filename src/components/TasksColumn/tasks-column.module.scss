@@ -1,4 +1,23 @@
 .container {
   height: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+  & > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    & > h2 {
+      margin: 0;
+    }
+  }
+  & > ul {
+    list-style: none;
+    padding: 0;
+    height: 100%;
+  }
 }
