@@ -24,13 +24,13 @@ export type Status = typeof statusEnum;
 
 export const TaskSchema = z.object({
   title: z.string(),
-  id: z.string(),
+  _id: z.string(),
   description: z.string(),
   status: z.enum(statusEnum),
 });
 
 export const FormTaskSchema = TaskSchema.omit({
-  id: true,
+  _id: true,
 });
 
 export type FormTask = z.infer<typeof FormTaskSchema>;

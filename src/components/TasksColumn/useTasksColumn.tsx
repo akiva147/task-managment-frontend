@@ -3,10 +3,13 @@ import { message } from "antd";
 import { useState } from "react";
 import { FormTask } from "../../models/task.model";
 import { taskService } from "../../services/task.service";
+import { useQueryClient } from "@tanstack/react-query";
 
-export const useTasksColumn = (id: string) => {
+export const useTasksColumn = (_id: string) => {
+  const queryClient = useQueryClient();
+
   const { setNodeRef } = useDroppable({
-    id,
+    id: _id,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -22,6 +25,9 @@ export const useTasksColumn = (id: string) => {
     setIsModalOpen(false);
     try {
       await taskService.create(data);
+      queryClient.invalidateQueries({
+        queryKey: ["tasks"],
+      });
       console.log("Task created successfully");
     } catch (error) {
       message.error({

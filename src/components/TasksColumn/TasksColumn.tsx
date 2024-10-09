@@ -10,12 +10,12 @@ import { useTasksColumn } from "./useTasksColumn";
 
 export interface TasksColumnProps {
   type: (typeof statusEnum)[number];
-  id: string;
+  _id: string;
   children: React.ReactNode;
 }
 
-export const TasksColumn = ({ children, id, type }: TasksColumnProps) => {
-  const { form, setNodeRef, showModal } = useTasksColumn(id);
+export const TasksColumn = ({ children, _id, type }: TasksColumnProps) => {
+  const { form, setNodeRef, showModal } = useTasksColumn(_id);
 
   return (
     <div className={classes.container}>
@@ -28,7 +28,7 @@ export const TasksColumn = ({ children, id, type }: TasksColumnProps) => {
         defaultValues={{
           status: type,
           description: "",
-          id: "",
+          _id: "",
           title: "",
         }}
         variant="create"

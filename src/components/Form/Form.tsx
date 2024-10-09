@@ -69,15 +69,6 @@ export const Form = ({
           </footer>
         </form>
       </FormProvider>
-      {/* {variant === "signup" ? (
-        <span>
-          Already have an account? <a href="/login">Login</a>
-        </span>
-      ) : (
-        <span>
-          Don't have an account? <a href="/signup">Signup</a>
-        </span>
-      )} */}
     </Modal>
   );
 };

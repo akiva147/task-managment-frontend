@@ -3,11 +3,14 @@ import { useState } from "react";
 import { taskService } from "../../services/task.service";
 import { FormTask, Task } from "../../models/task.model";
 import { message } from "antd";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const useSingleTask = (task: Task) => {
-  const { id } = task;
+  const queryClient = useQueryClient();
+
+  const { _id } = task;
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id,
+    id: _id,
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,6 +29,9 @@ export const useSingleTask = (task: Task) => {
     setIsModalOpen(false);
     try {
       await taskService.edit(data);
+      queryClient.invalidateQueries({
+        queryKey: ["tasks"],
+      });
     } catch (error) {
       message.error({
         content: "Edit failed",
@@ -38,7 +44,7 @@ export const useSingleTask = (task: Task) => {
     // console.log("handleDelete  data:", data);
 
     try {
-      await taskService.delete(id);
+      await taskService.delete(_id);
     } catch (error) {
       message.error({
         content: "Delete failed",

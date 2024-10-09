@@ -4,11 +4,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem;
-    // margin-bottom: 8px;
-    background-color: #f4f4f4;
-    border: 1px solid #ccc;
-    border-radius: 0.4rem;
+    & li {
+      padding: 0.5rem;
+      // margin-bottom: 8px;
+      background-color: #f4f4f4;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 0.4rem;
+      border-right: none;
+    }
     & > .buttons {
       gap: 0.5rem;
       display: flex;

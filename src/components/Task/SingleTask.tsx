@@ -20,19 +20,20 @@ export const SingleTask = ({ task }: SingleTaskProps) => {
   const { description } = task;
 
   return (
-    <div
-      className={classes.container}
-      ref={setNodeRef}
-      style={{
-        transform: `translate3d(${transform?.x ?? 0}px, ${
-          transform?.y ?? 0
-        }px, 0)`,
-      }}
-      {...listeners}
-      {...attributes}
-    >
+    <div className={classes.container}>
       <main>
-        <li>{description}</li>
+        <li
+          ref={setNodeRef}
+          style={{
+            transform: `translate3d(${transform?.x ?? 0}px, ${
+              transform?.y ?? 0
+            }px, 0)`,
+          }}
+          {...listeners}
+          {...attributes}
+        >
+          {description}
+        </li>
         <div className={classes.buttons}>
           <Button icon={<PlusOutlined />} onClick={showModal} />
           <Button icon={<MinusOutlined />} onClick={handleDelete} />
