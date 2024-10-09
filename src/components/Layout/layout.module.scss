@@ -1,0 +1,17 @@
+.container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 12fr;
+
+  & > main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    padding-inline: 3rem;
+    padding-block: 1rem;
+  }
+}

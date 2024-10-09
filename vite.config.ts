@@ -9,4 +9,12 @@ export default defineConfig({
     strictPort: true,
     host: "localhost",
   },
+  build: {
+    target: "esnext",
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      target: "esnext",
+    },
+  },
 });
